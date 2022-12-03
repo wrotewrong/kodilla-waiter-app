@@ -1,6 +1,17 @@
 import { useEffect } from 'react';
-import { Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+
+import { Container } from 'react-bootstrap';
+
+import { Routes, Route } from 'react-router-dom';
+
+import { Home } from './components/pages/Home';
+import { NotFound } from './components/pages/NotFound';
+import { SingleTable } from './components/features/SingleTable';
+import { TableEdit } from './components/features/TableEdit';
+import { Header } from './components/views/Header';
+import { Footer } from './components/views/Footer';
+
 import { fetchData } from './redux/tablesReducer';
 
 export const App = () => {
@@ -10,7 +21,14 @@ export const App = () => {
 
   return (
     <Container>
-      <div>XD</div>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/table/:id' element={<SingleTable />} />
+        <Route path='/table/edit/:id' element={<TableEdit />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+      <Footer />
     </Container>
   );
 };

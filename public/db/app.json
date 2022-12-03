@@ -2,7 +2,6 @@
   "tables": [
     {
       "id": "1",
-      "name": "Table 1",
       "status": "Reserved",
       "current-people": 0,
       "max-people": 4,
@@ -10,7 +9,6 @@
     },
     {
       "id": "2",
-      "name": "Table 2",
       "status": "Free",
       "current-people": 0,
       "max-people": 4,
@@ -18,7 +16,6 @@
     },
     {
       "id": "3",
-      "name": "Table 3",
       "status": "Busy",
       "current-people": 0,
       "max-people": 2,
@@ -26,7 +23,6 @@
     },
     {
       "id": "4",
-      "name": "Table 4",
       "status": "Cleaning",
       "current-people": 0,
       "max-people": 2,
@@ -34,7 +30,6 @@
     },
     {
       "id": "5",
-      "name": "Table 5",
       "status": "Cleaning",
       "current-people": 0,
       "max-people": 6,
