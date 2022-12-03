@@ -8,7 +8,6 @@ import { Routes, Route } from 'react-router-dom';
 import { Home } from './components/pages/Home';
 import { NotFound } from './components/pages/NotFound';
 import { SingleTable } from './components/features/SingleTable';
-import { TableEdit } from './components/features/TableEdit';
 import { Header } from './components/views/Header';
 import { Footer } from './components/views/Footer';
 
@@ -25,7 +24,6 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/table/:id' element={<SingleTable />} />
-        <Route path='/table/edit/:id' element={<TableEdit />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

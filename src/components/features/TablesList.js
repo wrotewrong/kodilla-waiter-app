@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getAllTables } from '../../redux/tablesReducer';
 
 export const TablesList = () => {
@@ -20,7 +21,9 @@ export const TablesList = () => {
             <p className='mx-3 mb-0'>
               <strong>Status:</strong> {table.status}
             </p>
-            <Button className='ms-auto'>Show more</Button>
+            <Link className='ms-auto' to={`/table/${table.id}`}>
+              <Button>Show more</Button>
+            </Link>
           </div>
         );
       })}

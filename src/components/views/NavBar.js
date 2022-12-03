@@ -1,4 +1,4 @@
-import { NavLink } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -12,11 +12,11 @@ export const NavBar = () => {
       <Navbar.Brand href='/' className='px-4 my-2'>
         WaiterApp
       </Navbar.Brand>
-      <div className='px-4 my-2'>
+      <Nav className='px-4 my-2'>
         <Nav.Link as={NavLink} to='/'>
           Home
         </Nav.Link>
-      </div>
+      </Nav>
     </Navbar>
   );
 };
