@@ -3,37 +3,37 @@
     {
       "id": "1",
       "status": "Reserved",
-      "current-people": 0,
-      "max-people": 4,
-      "bill": 0
+      "currentPeople": "0",
+      "maxPeople": "4",
+      "bill": "0"
     },
     {
       "id": "2",
       "status": "Free",
-      "current-people": 0,
-      "max-people": 4,
-      "bill": 0
+      "currentPeople": "0",
+      "maxPeople": "4",
+      "bill": "0"
     },
     {
       "id": "3",
       "status": "Busy",
-      "current-people": 0,
-      "max-people": 2,
-      "bill": 0
+      "currentPeople": "2",
+      "maxPeople": "4",
+      "bill": "40"
     },
     {
       "id": "4",
       "status": "Cleaning",
-      "current-people": 0,
-      "max-people": 2,
-      "bill": 0
+      "currentPeople": "0",
+      "maxPeople": "2",
+      "bill": "0"
     },
     {
       "id": "5",
       "status": "Cleaning",
-      "current-people": 0,
-      "max-people": 6,
-      "bill": 0
+      "currentPeople": "0",
+      "maxPeople": "6",
+      "bill": "0"
     }
   ]
 }
