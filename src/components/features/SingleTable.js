@@ -1,12 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, FormLabel, FormSelect, FormControl } from 'react-bootstrap';
-import { getTableById } from '../../redux/tablesReducer';
+import { editTableRequest, getTableById } from '../../redux/tablesReducer';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export const SingleTable = () => {
   const { id } = useParams();
   const table = useSelector((state) => getTableById(state, id));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [status, setStatus] = useState(table.status);
   const [currentPeople, setCurrentPeople] = useState(table.currentPeople);
@@ -27,11 +30,9 @@ export const SingleTable = () => {
     if (value < 0) {
       value = '0';
     }
-
     if (value > Number(maxPeople)) {
       value = maxPeople;
     }
-
     setCurrentPeople(value);
   };
 
@@ -39,13 +40,10 @@ export const SingleTable = () => {
     if (value < 0) {
       value = '0';
     }
-
     if (value > 10) {
       value = '10';
     }
-
     setMaxPeople(value);
-
     if (Number(currentPeople) > value) {
       setCurrentPeople(value);
     }
@@ -53,12 +51,15 @@ export const SingleTable = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log({
-      status: status,
-      currentPeople: currentPeople,
-      maxPeople: maxPeople,
-      bill: bill,
-    });
+    const editedTable = {
+      id,
+      status,
+      currentPeople,
+      maxPeople,
+      bill,
+    };
+    dispatch(editTableRequest(editedTable));
+    navigate('/');
   };
 
   return (
