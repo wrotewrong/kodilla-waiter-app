@@ -27,7 +27,7 @@ export const SingleTable = () => {
   };
 
   const handleCurrentPeople = (value) => {
-    if (value < 0) {
+    if (value < 0 || isNaN(value)) {
       value = '0';
     }
     if (value > Number(maxPeople)) {
@@ -37,7 +37,7 @@ export const SingleTable = () => {
   };
 
   const handleMaxPeople = (value) => {
-    if (value < 0) {
+    if (value < 0 || isNaN(value)) {
       value = '0';
     }
     if (value > 10) {

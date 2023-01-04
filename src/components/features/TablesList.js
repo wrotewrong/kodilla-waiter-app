@@ -2,15 +2,17 @@ import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllTables } from '../../redux/tablesReducer';
+import Spinner from 'react-bootstrap/Spinner';
 
 export const TablesList = () => {
   const tables = useSelector(getAllTables);
 
+  if (!tables.length) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <div>
-      <h1 className='my-3'>
-        <strong>All tables</strong>
-      </h1>
       {tables.map((table) => {
         return (
           <div

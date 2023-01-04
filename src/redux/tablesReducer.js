@@ -27,7 +27,7 @@ export const fetchData = () => {
 };
 
 export const editTableRequest = (editedTable) => {
-  return () => {
+  return (dispatch) => {
     const options = {
       method: 'PUT',
       headers: {
@@ -36,7 +36,9 @@ export const editTableRequest = (editedTable) => {
       body: JSON.stringify(editedTable),
     };
 
-    fetch(`http://localhost:3131/api/tables/${editedTable.id}`, options);
+    fetch(`http://localhost:3131/api/tables/${editedTable.id}`, options)
+      .then((response) => response.json())
+      .then((data) => dispatch(editTable(data)));
   };
 };
 
@@ -46,8 +48,10 @@ export const tablesReducer = (statePart = [], action) => {
     case EDIT_TABLE:
       return statePart.map((table) => {
         if (table.id === action.payload.id) {
-          return { ...action.payload };
-        } else return table;
+          return { ...table, ...action.payload };
+        } else {
+          return table;
+        }
       });
     case GET_DATA:
       return [...action.payload];
