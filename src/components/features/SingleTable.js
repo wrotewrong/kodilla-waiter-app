@@ -1,20 +1,40 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, FormLabel, FormSelect, FormControl } from 'react-bootstrap';
+import {
+  Button,
+  FormLabel,
+  FormSelect,
+  FormControl,
+  Spinner,
+} from 'react-bootstrap';
 import { editTableRequest, getTableById } from '../../redux/tablesReducer';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 export const SingleTable = () => {
   const { id } = useParams();
-  const table = useSelector((state) => getTableById(state, id));
+  const loadedTable = useSelector((state) => getTableById(state, id));
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [table, setTable] = useState(
+    loadedTable || { status: '', currentPeople: '', maxPeople: '', bill: '' }
+  );
 
   const [status, setStatus] = useState(table.status);
   const [currentPeople, setCurrentPeople] = useState(table.currentPeople);
   const [maxPeople, setMaxPeople] = useState(table.maxPeople);
   const [bill, setBill] = useState(table.bill);
+
+  useEffect(() => {
+    if (loadedTable !== undefined) {
+      setTable(loadedTable);
+      setStatus(table.status);
+      setCurrentPeople(table.currentPeople);
+      setMaxPeople(table.maxPeople);
+      setBill(table.bill);
+    }
+  }, [table, loadedTable]);
 
   const handleStatus = (value) => {
     if (value === 'Busy') {
@@ -61,6 +81,10 @@ export const SingleTable = () => {
     dispatch(editTableRequest(editedTable));
     navigate('/');
   };
+
+  if (loadedTable === undefined) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <form onSubmit={(e) => handleUpdate(e)}>
