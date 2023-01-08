@@ -11,10 +11,12 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { getStatus } from '../../redux/requestStatusReducer';
 
 export const SingleTable = () => {
   const { id } = useParams();
   const loadedTable = useSelector((state) => getTableById(state, id));
+  const isPending = useSelector((state) => getStatus(state));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [table, setTable] = useState(
@@ -34,7 +36,10 @@ export const SingleTable = () => {
       setMaxPeople(table.maxPeople);
       setBill(table.bill);
     }
-  }, [table, loadedTable]);
+    if (loadedTable === undefined && isPending === false) {
+      navigate('/');
+    }
+  }, [table, loadedTable, isPending, navigate]);
 
   const handleStatus = (value) => {
     if (value === 'Busy') {

@@ -6,10 +6,12 @@ import {
 } from 'redux';
 import { initialState } from './initialState';
 import { tablesReducer } from './tablesReducer';
+import { statusReducer } from './requestStatusReducer';
 import thunk from 'redux-thunk';
 
 const subreducers = {
   tables: tablesReducer,
+  tableRequestPending: statusReducer,
 };
 
 const reducer = combineReducers(subreducers);

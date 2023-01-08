@@ -1,4 +1,5 @@
 import { API_URL } from '../config';
+import { changeStatus } from './requestStatusReducer';
 
 //selectors
 export const getAllTables = ({ tables }) => tables;
@@ -22,9 +23,11 @@ export const editTable = (payload) => ({ type: EDIT_TABLE, payload });
 
 export const fetchData = () => {
   return (dispatch) => {
+    dispatch(changeStatus(true));
     fetch(`${API_URL}/tables`)
       .then((response) => response.json())
-      .then((data) => dispatch(getData(data)));
+      .then((data) => dispatch(getData(data)))
+      .then(() => dispatch(changeStatus(false)));
   };
 };
 
